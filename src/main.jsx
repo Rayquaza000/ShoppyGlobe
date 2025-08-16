@@ -1,16 +1,18 @@
-import { StrictMode } from 'react'
+import { lazy, StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Beauty from './component/Beauty.jsx';
-import Fragrances from './component/Fragrances.jsx';
-import Furniture from './component/Furniture.jsx';
-import Groceries from './component/Groceries.jsx';
+
 import Cart from './component/cart.jsx';
-import ProductDetail from './component/ProductDetail.jsx'
 import ErrorPath from './component/ErrorPath.jsx'
-import Home from './component/Home.jsx'
+
+const Beauty=lazy(()=>import("./component/Beauty.jsx"));
+const Home=lazy(()=>import("./component/Home.jsx"));
+const Fragrances=lazy(()=>import("./component/Fragrances.jsx"));
+const Furniture=lazy(()=>import("./component/Furniture.jsx"));
+const Groceries=lazy(()=>import("./component/Groceries.jsx"));
+const ProductDetail=lazy(()=>import("./component/ProductDetail.jsx"));
 
 const appRouter=createBrowserRouter([
   {
@@ -19,23 +21,23 @@ const appRouter=createBrowserRouter([
     children:[
       {
         path:"/",
-        element:<Home/>
+        element:<Suspense fallback={<div>Loading</div>}><Home/></Suspense>
       },
       {
         path:"/beauty",
-        element:<Beauty/>
+        element:<Suspense fallback={<div>Loading</div>}><Beauty/></Suspense>
       },
       {
         path:"/fragrances",
-        element:<Fragrances/>
+        element:<Suspense fallback={<div>Loading</div>}><Fragrances/></Suspense>
       },
       {
         path:"/furniture",
-        element:<Furniture/>
+        element:<Suspense fallback={<div>Loading</div>}><Furniture/></Suspense>
       },
       {
         path:"/groceries",
-        element:<Groceries/>
+        element:<Suspense fallback={<div>Loading</div>}><Groceries/></Suspense>
       },
       {
         path:"/cart",
@@ -43,7 +45,7 @@ const appRouter=createBrowserRouter([
       },
       {
         path:"/:id",
-        element:<ProductDetail/>
+        element:<Suspense fallback={<div>Loading</div>}><ProductDetail/></Suspense>
       }
     ],
     errorElement:<ErrorPath/>
