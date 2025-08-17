@@ -4,13 +4,16 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './component/Header'
 import { Outlet } from 'react-router-dom'
-
+import { Provider } from 'react-redux'
+import appStore from './utils/appStore'
 function App() {
 
   return (
     <>
-      <Header/>
-      <Outlet/>
+      <Provider store={appStore}>
+        <Header/>
+        <Outlet/>
+      </Provider>
     </>
   )
 }

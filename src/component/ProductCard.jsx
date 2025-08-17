@@ -1,14 +1,30 @@
 import React from 'react'
 import reacticon from "../assets/react.svg"
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addItem,updateItemCount } from '../utils/cartSlice';
+import { useSelector } from 'react-redux';
+
 
 function ProductCard({id,loading,imgsrc,brand,title,avgRating,warrantyInfo,availabilityStatus,shippingInfo,price}) {
     const navigate=useNavigate();
+    const dispatch=useDispatch();
+    const cartItems=useSelector((store)=>store.cart.items);
     function handleViewDetails(){
         navigate('./'+id.toString());
     }
     function handleAddToCart(){
-
+        let flag=0;
+        cartItems.forEach((item)=>{if(item.id==id){flag=1}});
+        if(flag==1)
+        {
+            dispatch(updateItemCount([id,1]));
+        }
+        else
+        {
+            dispatch(addItem({"id":id,"imgsrc":imgsrc,"brand":brand,"title":title,"avgRating":avgRating,"warrantyInfo":warrantyInfo,"availabilityStatus":availabilityStatus,"shippingInfo":shippingInfo,"price":price,"quantity":1}))
+        }
+        console.log("item added to redux")
     }
 
   return (

@@ -1,10 +1,11 @@
 import React from 'react';
 import { FaSearch } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
-
+import { useNavigate } from 'react-router-dom';
 
 
 function Header() {
+  const navigate=useNavigate();
   return (
     <>
       <header className='flex flex-wrap w-full h-fit py-2 px-10 items-center justify-evenly'>
@@ -21,7 +22,7 @@ function Header() {
             </div>
         </div>
         <div>
-          <IoCartOutline className='w-8 h-8'/>
+          <IoCartOutline className='w-8 h-8' onClick={()=>{navigate("./cart")}}/>
         </div>
       </header>
     </>
