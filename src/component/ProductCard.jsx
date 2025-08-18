@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import reacticon from "../assets/react.svg"
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -10,6 +10,12 @@ function ProductCard({id,loading,imgsrc,brand,title,avgRating,warrantyInfo,avail
     const navigate=useNavigate();
     const dispatch=useDispatch();
     const cartItems=useSelector((store)=>store.cart.items);
+    const cartCount=useSelector((store)=>store.cart.count);
+    let fontSize="text-[16px]";
+    if(title?.length>20)
+    {
+        fontSize="text-[12px]";
+    }
     function handleViewDetails(){
         navigate('./'+id.toString());
     }
@@ -19,25 +25,35 @@ function ProductCard({id,loading,imgsrc,brand,title,avgRating,warrantyInfo,avail
         if(flag==1)
         {
             dispatch(updateItemCount([id,1]));
+            
         }
         else
         {
             dispatch(addItem({"id":id,"imgsrc":imgsrc,"brand":brand,"title":title,"avgRating":avgRating,"warrantyInfo":warrantyInfo,"availabilityStatus":availabilityStatus,"shippingInfo":shippingInfo,"price":price,"quantity":1}))
         }
-        console.log("item added to redux")
-    }
+//         const nextCount = flag ? cartCount + 1 : cartCount + 1;
+//         localStorage.setItem("cartItems", JSON.stringify([...cartItems]));
+//   localStorage.setItem("cartCount", nextCount.toString());
+//         console.log("item added to redux")
 
+    }
+    useEffect(() => {
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  localStorage.setItem("cartCount", cartCount.toString());
+}, [cartItems, cartCount]);
+  
+        
   return (
-    <div className='flex flex-row w-125 h-50 bg-white border-1 border-black rounded-[20px]'>
+    <div className='flex flex-row w-115 h-50 bg-white border-1 border-black rounded-[20px] m-2'>
 
         {loading?<span className='self-center mx-auto font-bold text-neutral-500'> Loading data... </span> :
         <>
         <div className='flex items-center justify-center rounded-l-[20px] w-80 h-full border-1 border-black'>
-        <img src={imgsrc} className='rounded-l-[20px] w-40 h-40'></img>
+        <img src={imgsrc} className='rounded-l-[20px] w-30 h-30'></img>
         </div>
         <div className='h-full w-100 p-2 flex flex-col border-1 border-black rounded-r-[20px]'>
             <span className='text-[18px]'>{brand}</span>
-            <span className="text-[16px] font-bold">{title}</span>
+            <span className={`${fontSize} font-bold`}>{title}</span>
             <div className='flex flex-row'>
                 <span className='w-fit text-[14px] p-0.5 rounded-[5px] border-1 border-black bg-[#ddd9c3] mr-2'>Avg. rating: {avgRating}</span> 
                 <span className='w-fit text-[14px] p-0.5 rounded-[5px] border-1 border-black bg-[#ddd9c3]'>{warrantyInfo}</span>

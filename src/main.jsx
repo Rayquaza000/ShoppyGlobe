@@ -14,6 +14,7 @@ const Fragrances=lazy(()=>import("./component/Fragrances.jsx"));
 const Furniture=lazy(()=>import("./component/Furniture.jsx"));
 const Groceries=lazy(()=>import("./component/Groceries.jsx"));
 const ProductDetail=lazy(()=>import("./component/ProductDetail.jsx"));
+const SearchPage=lazy(()=>import("./component/SearchPage.jsx"));
 
 const appRouter=createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const appRouter=createBrowserRouter([
       {
         path:"/:id",
         element:<Suspense fallback={<div>Loading</div>}><ProductDetail/></Suspense>
+      },
+      {
+        path:"/search/:searchValue",
+        element:<Suspense fallback={<div>Loading</div>}><SearchPage/></Suspense>
       }
     ],
     errorElement:<ErrorPath/>

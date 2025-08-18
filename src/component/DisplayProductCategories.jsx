@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from './ProductCard'
 import useFetch from '../utils/useFetch'
+import { useNavigate } from 'react-router-dom';
 
-function DisplayProductCategories({categoryName,backgColor}) {
+function DisplayProductCategories({categoryName,backgColor,hoverColor}) {
     const {data,error,loading}=useFetch("https://dummyjson.com/products");
+    const navigate=useNavigate();
     if(error)
     {
         return(<div>{error}</div>);
@@ -13,7 +15,7 @@ function DisplayProductCategories({categoryName,backgColor}) {
     //     return(<div>Loading</div>);
     // }
     function handleExploreMoreProducts(){
-
+        navigate("./"+categoryName.toLowerCase());
     }
     let i=0;
   return (
@@ -31,7 +33,7 @@ function DisplayProductCategories({categoryName,backgColor}) {
                 
             }
         </div>
-        <div className={`flex flex-row justify-center items-center py-3 text-[18px] text-black ${backgColor} rounded-b-[20px] border-1 border-black`} onClick={handleExploreMoreProducts}>Explore more products!</div>
+        <div className={`flex flex-row justify-center items-center py-3 text-[18px] text-black ${backgColor} rounded-b-[20px] border-1 border-black ${hoverColor}`} onClick={handleExploreMoreProducts}>Explore more products!</div>
     </div>
   );
   

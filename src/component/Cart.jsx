@@ -2,8 +2,9 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import { useState,useEffect } from 'react';
-function cart() {
+function Cart() {
   const cartItems=useSelector((store)=>store.cart.items);
+  console.log(cartItems);
   const [subTotal,setSubTotal]=useState(0);
   
   useEffect(()=>{
@@ -28,4 +29,4 @@ function cart() {
   )
 }
 
-export default cart
+export default Cart
