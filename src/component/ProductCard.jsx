@@ -18,7 +18,7 @@ function ProductCard({id,loading,imgsrc,brand,title,avgRating,warrantyInfo,avail
         fontSize="text-[12px]";
     }
     function handleViewDetails(){
-        navigate('./'+id.toString());
+        navigate('/product/'+id.toString());
     }
     function handleAddToCart(){
         let flag=0;

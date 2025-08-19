@@ -25,43 +25,43 @@ const appRouter=createBrowserRouter([
     children:[
       {
         path:"/",
-        element:<Suspense fallback={<div>Loading</div>}><Home/></Suspense>
+        element:<Suspense fallback={<div className='flex flex-row h-40 w-full items-center justify-center font-bold text-neutral-600'>Loading</div>}><Home/></Suspense>
       },
       {
         path:"/beauty",
-        element:<Suspense fallback={<div>Loading</div>}><Beauty/></Suspense>
+        element:<Suspense fallback={<div className='flex flex-row h-40 w-full items-center justify-center font-bold text-neutral-600'>Loading</div>}><Beauty/></Suspense>
       },
       {
         path:"/fragrances",
-        element:<Suspense fallback={<div>Loading</div>}><Fragrances/></Suspense>
+        element:<Suspense fallback={<div className='flex flex-row h-40 w-full items-center justify-center font-bold text-neutral-600'>Loading</div>}><Fragrances/></Suspense>
       },
       {
         path:"/furniture",
-        element:<Suspense fallback={<div>Loading</div>}><Furniture/></Suspense>
+        element:<Suspense fallback={<div className='flex flex-row h-40 w-full items-center justify-center font-bold text-neutral-600'>Loading</div>}><Furniture/></Suspense>
       },
       {
         path:"/groceries",
-        element:<Suspense fallback={<div>Loading</div>}><Groceries/></Suspense>
+        element:<Suspense fallback={<div className='flex flex-row h-40 w-full items-center justify-center font-bold text-neutral-600'>Loading</div>}><Groceries/></Suspense>
       },
       {
         path:"/cart",
         element:<Cart/>
       },
       {
-        path:"/:id",
-        element:<Suspense fallback={<div>Loading</div>}><ProductDetail/></Suspense>
+        path:"/product/:id",
+        element:<Suspense fallback={<div className='flex flex-row h-40 w-full items-center justify-center font-bold text-neutral-600'>Loading</div>}><ProductDetail/></Suspense>
       },
       {
         path:"/search/:searchValue",
-        element:<Suspense fallback={<div>Loading</div>}><SearchPage/></Suspense>
+        element:<Suspense fallback={<div className='flex flex-row h-40 w-full items-center justify-center font-bold text-neutral-600'>Loading</div>}><SearchPage/></Suspense>
       },
       {
         path:"/checkout",
-        element:<Suspense fallback={<div>Loading</div>}><Checkout/></Suspense>
+        element:<Suspense fallback={<div className='flex flex-row h-40 w-full items-center justify-center font-bold text-neutral-600'>Loading</div>}><Checkout/></Suspense>
       },
       {
         path:"/placedorder",
-        element:<Suspense fallback={<div>Loading</div>}><PlacedOrder/></Suspense>
+        element:<Suspense fallback={<div className='flex flex-row h-40 w-full items-center justify-center font-bold text-neutral-600'>Loading</div>}><PlacedOrder/></Suspense>
       }
 
     ],
