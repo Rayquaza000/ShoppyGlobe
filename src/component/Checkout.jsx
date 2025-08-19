@@ -21,7 +21,7 @@ function Checkout() {
             setIncorrectDetails(true);
         }
         else{
-            navigate("../placedorder");
+            navigate("/placedorder");
         }
     }
   return (
@@ -41,20 +41,29 @@ function Checkout() {
     </div>
     <form className='w-100 mx-auto flex flex-col items-center mt-5'>
         <span className='text-[20px] font-bold text-cyan-950'>Billing Information</span>
-        <div className='flex flex-col items-start'>
+        <div className='flex flex-col items-between'>
             <label className='my-2'>Name:
             <input type="text" className='border-1 mx-3 rounded-[3px] px-1 py-1' onChange={(e)=>{setName(e.target.value)}} value={name}></input></label>
             <label className='my-2'>E-mail:
                 <input type="email" className='border-1 mx-3 rounded-[3px] px-1 py-1' onChange={(e)=>{setEmail(e.target.value)}} value={email}></input>
             </label>
             <label className='my-2'>
-                Phone No.:
+                Phone:
                 <input type="number" className='border-1 mx-3 rounded-[3px] px-1 py-1' onChange={(e)=>{setPhone(e.target.value)}} value={phone}></input>
             </label>
             <label className='my-2'>
                 Address:
                 <input type="text" className='border-1 mx-3 rounded-[3px] px-1 py-1' onChange={(e)=>{setAddress(e.target.value)}} value={address}></input>
             </label>
+
+            <label className='mt-2'>Choose payment method:</label>
+            <select name="payment" id="payment" className='my-3 border-1 border-black'>
+            <option value="card">Credit/Debit card</option>
+            <option value="UPI">UPI</option>
+            <option value="netbanking">netbanking</option>
+            <option value="cash">Cash</option>
+            </select>
+
             <input type="button" value="Place Order" className='bg-cyan-950 self-center px-4 py-2 text-white rounded-[3px]' onClick={handlePlaceOrder}></input>
         </div>
         {incorrectDetails?<span className='bg-red-400 text-red-800 mt-3 border-1 border-red-800 px-3'>Enter correct details</span>:null}

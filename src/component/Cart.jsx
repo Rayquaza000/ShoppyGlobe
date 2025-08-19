@@ -27,7 +27,7 @@ function Cart() {
       <div className='w-100 h-fit py-5 flex flex-row justify-end border-t-1 border-b-1'>
           Subtotal: {subTotal.toFixed(2)}
       </div>
-      {cartItems.length>0?<button className='w-fit h-fit px-5 py-3 bg-amber-400 mt-3' onClick={()=>{navigate("../checkout")}}>Proceed to Checkout</button>:null}
+      {cartItems.length>0?<button className='w-fit h-fit px-5 py-3 bg-amber-400 mt-3' onClick={()=>{navigate("/checkout")}}>Proceed to Pay</button>:null}
  </div>
   )
 }

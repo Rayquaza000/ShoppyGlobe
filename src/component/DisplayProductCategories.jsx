@@ -15,7 +15,7 @@ function DisplayProductCategories({categoryName,backgColor,hoverColor}) {
     //     return(<div>Loading</div>);
     // }
     function handleExploreMoreProducts(){
-        navigate("./"+categoryName.toLowerCase());
+        navigate("/"+categoryName.toLowerCase());
     }
     let i=0;
   return (
