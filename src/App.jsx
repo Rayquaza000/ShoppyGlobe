@@ -14,16 +14,19 @@ function App() {
   const dispatch=useDispatch();
 useEffect(() => {
   const storedItems = localStorage.getItem("cartItems");
+  console.log(storedItems);
   const storedCount = localStorage.getItem("cartCount");
 
-  if (storedItems!=null && storedItems!=undefined) {
+  if (storedItems!=null && storedItems!=undefined && storedCount!=undefined) {
     dispatch(setCart({
       items: JSON.parse(storedItems),
-      count: storedCount ? parseInt(storedCount) : 0
+      count: storedCount!=null ? parseInt(storedCount) : 0
     }));
   }
 }, [dispatch]);
   
+
+
   return (
     <>
         <Header/>

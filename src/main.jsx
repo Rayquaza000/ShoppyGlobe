@@ -5,8 +5,10 @@ import App from './App.jsx'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import appStore from './utils/appStore.js';
 import { Provider } from 'react-redux'
-import Cart from './component/cart.jsx';
-import ErrorPath from './component/ErrorPath.jsx'
+import Cart from './component/Cart.jsx';
+import ErrorPath from './component/ErrorPath.jsx';
+import Checkout from './component/Checkout.jsx'
+import PlacedOrder from './component/PlacedOrder.jsx'
 
 const Beauty=lazy(()=>import("./component/Beauty.jsx"));
 const Home=lazy(()=>import("./component/Home.jsx"));
@@ -52,7 +54,16 @@ const appRouter=createBrowserRouter([
       {
         path:"/search/:searchValue",
         element:<Suspense fallback={<div>Loading</div>}><SearchPage/></Suspense>
+      },
+      {
+        path:"/checkout",
+        element:<Suspense fallback={<div>Loading</div>}><Checkout/></Suspense>
+      },
+      {
+        path:"/placedorder",
+        element:<Suspense fallback={<div>Loading</div>}><PlacedOrder/></Suspense>
       }
+
     ],
     errorElement:<ErrorPath/>
   }

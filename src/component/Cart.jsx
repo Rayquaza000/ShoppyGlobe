@@ -2,7 +2,9 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 function Cart() {
+  const navigate=useNavigate();
   const cartItems=useSelector((store)=>store.cart.items);
   console.log(cartItems);
   const [subTotal,setSubTotal]=useState(0);
@@ -25,7 +27,8 @@ function Cart() {
       <div className='w-100 h-fit py-5 flex flex-row justify-end border-t-1 border-b-1'>
           Subtotal: {subTotal.toFixed(2)}
       </div>
-    </div>
+      {cartItems.length>0?<button className='w-fit h-fit px-5 py-3 bg-amber-400 mt-3' onClick={()=>{navigate("../checkout")}}>Proceed to Checkout</button>:null}
+ </div>
   )
 }
 

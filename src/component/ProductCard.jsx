@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import reacticon from "../assets/react.svg"
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 function ProductCard({id,loading,imgsrc,brand,title,avgRating,warrantyInfo,availabilityStatus,shippingInfo,price}) {
     const navigate=useNavigate();
     const dispatch=useDispatch();
+    const [message,setMessage]=useState("");
     const cartItems=useSelector((store)=>store.cart.items);
     const cartCount=useSelector((store)=>store.cart.count);
     let fontSize="text-[16px]";
@@ -35,17 +36,20 @@ function ProductCard({id,loading,imgsrc,brand,title,avgRating,warrantyInfo,avail
 //         localStorage.setItem("cartItems", JSON.stringify([...cartItems]));
 //   localStorage.setItem("cartCount", nextCount.toString());
 //         console.log("item added to redux")
+        setMessage("Item added to cart");
 
+        setTimeout(()=>{setMessage("")},2000);
     }
     useEffect(() => {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  console.log("################",cartCount)
   localStorage.setItem("cartCount", cartCount.toString());
 }, [cartItems, cartCount]);
   
         
   return (
     <div className='flex flex-row w-115 h-50 bg-white border-1 border-black rounded-[20px] m-2'>
-
+        {message!=""?<div className='w-fit h-fit absolute p-2 px-5 top-[0px] right-[100px] bg-green-800 border-1 border-black text-[white]'>{message}</div>:null}
         {loading?<span className='self-center mx-auto font-bold text-neutral-500'> Loading data... </span> :
         <>
         <div className='flex items-center justify-center rounded-l-[20px] w-80 h-full border-1 border-black'>
